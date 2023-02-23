@@ -23,6 +23,39 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Administrador"))
+                        {
+                            <li>@Html.ActionLink("Utilizadores", "Index", "Users")</li>
+                        }
+                        <li>@Html.ActionLink("Quartos", "Index", "Quartos")</li>
+                        <li>@Html.ActionLink("Estadias", "Index", "Estadias")</li>
+                        <li>@Html.ActionLink("Clientes", "Index", "Clientes")</li>
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultas</a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Pesquisa", "Index", "Consultas")</li>
+                                <li>@Html.ActionLink("Pesquisa Dinamica", "PesquisaDinamica", "Consultas")</li>
+                                <li>@Html.ActionLink("Melhor Cliente", "MelhorCliente", "Consultas")</li>
+                                <li>@Html.ActionLink("Estadias Cliente", "EstadiasDeUmCliente", "Consultas")</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                @Html.DisplayName("Olá " + User.Identity.Name)
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!--TODO: helper userid-->
+                                <li>@Html.ActionLink("Editar perfil", "Edit/" + 1, "Users")</li>
+                                <li>@Html.ActionLink("Terminar sessão", "Index", "Logout")</li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Login", "Index", "Login")</li>
+                    }
                 </ul>
             </div>
         </div>

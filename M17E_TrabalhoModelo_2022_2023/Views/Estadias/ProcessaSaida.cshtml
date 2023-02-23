@@ -56,6 +56,21 @@
             @Html.Raw(ViewBag.dias)
         </dd>
     </dl>
+    @using(Html.BeginForm())
+     {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ClienteID)
+        @Html.HiddenFor(model => model.QuartoID)
+        @Html.HiddenFor(model => model.valor_pago)
+        @Html.HiddenFor(model => model.data_entrada)
+        @Html.HiddenFor(model => model.data_saida)
+        @Html.HiddenFor(model => model.EstadiaId)
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </div>
+     }
 </div>
 <p>
     @Html.ActionLink("Voltar", "ListaEstadiasEmCurso")

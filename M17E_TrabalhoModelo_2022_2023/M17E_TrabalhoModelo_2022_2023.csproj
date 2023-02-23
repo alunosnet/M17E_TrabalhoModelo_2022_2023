@@ -130,7 +130,10 @@
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\EstadiasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\QuartosController.cs" />
+    <Compile Include="Controllers\UtilizadoresController.cs" />
+    <Compile Include="Data\AppRoleProvider.cs" />
     <Compile Include="Data\M17E_TrabalhoModelo_2022_2023Context.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -147,10 +150,15 @@
     <Compile Include="Migrations\202302161021385_Estadias.designer.cs">
       <DependentUpon>202302161021385_Estadias.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202302230924563_utilizadores.cs" />
+    <Compile Include="Migrations\202302230924563_utilizadores.designer.cs">
+      <DependentUpon>202302230924563_utilizadores.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Estadia.cs" />
     <Compile Include="Models\Quarto.cs" />
+    <Compile Include="Models\Utilizador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -206,6 +214,12 @@
     <Content Include="Views\Estadias\Index.cshtml" />
     <Content Include="Views\Estadias\ListaEstadiasEmCurso.cshtml" />
     <Content Include="Views\Estadias\ProcessaSaida.cshtml" />
+    <Content Include="Views\Utilizadores\Create.cshtml" />
+    <Content Include="Views\Utilizadores\Delete.cshtml" />
+    <Content Include="Views\Utilizadores\Details.cshtml" />
+    <Content Include="Views\Utilizadores\Edit.cshtml" />
+    <Content Include="Views\Utilizadores\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -232,6 +246,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202302161021385_Estadias.resx">
       <DependentUpon>202302161021385_Estadias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302230924563_utilizadores.resx">
+      <DependentUpon>202302230924563_utilizadores.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

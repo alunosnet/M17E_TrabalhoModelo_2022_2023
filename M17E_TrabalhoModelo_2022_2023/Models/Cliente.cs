@@ -45,6 +45,7 @@ namespace M17E_TrabalhoModelo_2022_2023.Models
         [DisplayFormat(DataFormatString ="{0:dd-MM-yyyy}",ApplyFormatInEditMode =true)]
         public DateTime DataNascimento { get; set; }
 
-        //TODO: lista das estadias
+        //lista das estadias
+        public virtual List<Estadia> listaEstadias { get; set; }
     }
 }

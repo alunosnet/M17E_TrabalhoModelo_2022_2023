@@ -24,5 +24,7 @@ namespace M17E_TrabalhoModelo_2022_2023.Data
         public System.Data.Entity.DbSet<M17E_TrabalhoModelo_2022_2023.Models.Quarto> Quartos { get; set; }
 
         public System.Data.Entity.DbSet<M17E_TrabalhoModelo_2022_2023.Models.Estadia> Estadias { get; set; }
+
+        public System.Data.Entity.DbSet<M17E_TrabalhoModelo_2022_2023.Models.Utilizador> Utilizadors { get; set; }
     }
 }

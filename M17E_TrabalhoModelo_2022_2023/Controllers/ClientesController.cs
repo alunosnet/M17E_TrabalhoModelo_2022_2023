@@ -11,6 +11,7 @@ using M17E_TrabalhoModelo_2022_2023.Models;
 
 namespace M17E_TrabalhoModelo_2022_2023.Controllers
 {
+    [Authorize]
     public class ClientesController : Controller
     {
         private M17E_TrabalhoModelo_2022_2023Context db = new M17E_TrabalhoModelo_2022_2023Context();
@@ -89,7 +90,7 @@ namespace M17E_TrabalhoModelo_2022_2023.Controllers
             }
             return View(cliente);
         }
-
+        [Authorize(Roles ="Administrador")]
         // GET: Clientes/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -104,7 +105,7 @@ namespace M17E_TrabalhoModelo_2022_2023.Controllers
             }
             return View(cliente);
         }
-
+        [Authorize(Roles = "Administrador")]
         // POST: Clientes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

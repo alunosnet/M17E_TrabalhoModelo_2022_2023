@@ -11,6 +11,7 @@ using M17E_TrabalhoModelo_2022_2023.Models;
 
 namespace M17E_TrabalhoModelo_2022_2023.Controllers
 {
+    [Authorize]
     public class EstadiasController : Controller
     {
         private M17E_TrabalhoModelo_2022_2023Context db = new M17E_TrabalhoModelo_2022_2023Context();
@@ -165,9 +166,25 @@ namespace M17E_TrabalhoModelo_2022_2023.Controllers
             TimeSpan dias = DateTime.Now.Date.Subtract(estadia.data_entrada);
             int diasPagar = (int)(dias.TotalDays <= 0 ? 1 : dias.TotalDays);
             estadia.valor_pago = diasPagar * quarto.Custo_dia;
+            estadia.data_saida = DateTime.Now.Date;
             ViewBag.dias = diasPagar;
             estadia.cliente = db.Clientes.Find(estadia.ClienteID);
             return View(estadia);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ProcessaSaida(Estadia estadia)
+        {
+            //atualiza a estadia
+            db.Entry(estadia).State= EntityState.Modified;
+
+            //atualiza o quarto
+            var quarto = db.Quartos.Find(estadia.QuartoID);
+            quarto.Estado = true;
+            db.Entry(quarto).CurrentValues.SetValues(quarto);
+            db.SaveChanges();
+
+            return RedirectToAction("ListaEstadiasEmCurso");
         }
     }
 }

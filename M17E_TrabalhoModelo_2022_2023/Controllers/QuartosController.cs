@@ -11,6 +11,7 @@ using M17E_TrabalhoModelo_2022_2023.Models;
 
 namespace M17E_TrabalhoModelo_2022_2023.Controllers
 {
+    [Authorize]
     public class QuartosController : Controller
     {
         private M17E_TrabalhoModelo_2022_2023Context db = new M17E_TrabalhoModelo_2022_2023Context();
@@ -20,7 +21,7 @@ namespace M17E_TrabalhoModelo_2022_2023.Controllers
         {
             return View(db.Quartos.ToList());
         }
-
+        [Authorize(Roles ="Administrador")]
         // GET: Quartos/Details/5
         public ActionResult Details(int? id)
         {
@@ -35,13 +36,13 @@ namespace M17E_TrabalhoModelo_2022_2023.Controllers
             }
             return View(quarto);
         }
-
+        [Authorize(Roles = "Administrador")]
         // GET: Quartos/Create
         public ActionResult Create()
         {
             return View();
         }
-
+        [Authorize(Roles = "Administrador")]
         // POST: Quartos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -58,7 +59,7 @@ namespace M17E_TrabalhoModelo_2022_2023.Controllers
 
             return View(quarto);
         }
-
+        [Authorize(Roles = "Administrador")]
         // GET: Quartos/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -73,7 +74,7 @@ namespace M17E_TrabalhoModelo_2022_2023.Controllers
             }
             return View(quarto);
         }
-
+        [Authorize(Roles = "Administrador")]
         // POST: Quartos/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -89,7 +90,7 @@ namespace M17E_TrabalhoModelo_2022_2023.Controllers
             }
             return View(quarto);
         }
-
+        [Authorize(Roles = "Administrador")]
         // GET: Quartos/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -104,7 +105,7 @@ namespace M17E_TrabalhoModelo_2022_2023.Controllers
             }
             return View(quarto);
         }
-
+        [Authorize(Roles = "Administrador")]
         // POST: Quartos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
