@@ -1,17 +1,14 @@
 ﻿@model IEnumerable<M17E_TrabalhoModelo_2022_2023.Models.Cliente>
 
 @{
-    ViewBag.Title = "Lista de Clientes";
+    ViewBag.Title = "Pesquisa Cliente";
 }
 
-<h2>Lista de Clientes</h2>
+<h2>Pesquisa Cliente</h2>
 
-<p>
-    @Html.ActionLink("Criar novo cliente", "Create")
-</p>
+
 <table class="table">
     <tr>
-        <th></th>
         <th>
             @Html.DisplayNameFor(model => model.Nome)
         </th>
@@ -30,20 +27,10 @@
         <th>
             @Html.DisplayNameFor(model => model.DataNascimento)
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @{ 
-                string nome = Server.MapPath("~/Public/" + item.ClienteID + ".jpg");
-                if(System.IO.File.Exists(nome))
-                {
-                    <img src="@Url.Content(String.Format("~/Public/{0}.jpg",item.ClienteID))" width="150"/>
-                }
-            }
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Nome)
         </td>
@@ -61,14 +48,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DataNascimento)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.ClienteID }) |
-            @Html.ActionLink("Detalhes", "Details", new { id=item.ClienteID }) |
-            @if (Request.IsAuthenticated && User.IsInRole("Administrador"))
-            {
-                 @Html.ActionLink("Apagar", "Delete", new { id = item.ClienteID })
-            }
         </td>
     </tr>
 }

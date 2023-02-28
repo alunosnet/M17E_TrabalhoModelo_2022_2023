@@ -128,6 +128,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\ConsultasController.cs" />
     <Compile Include="Controllers\EstadiasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -138,6 +139,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\Utils.cs" />
     <Compile Include="Migrations\202302160849407_primeira.cs" />
     <Compile Include="Migrations\202302160849407_primeira.designer.cs">
       <DependentUpon>202302160849407_primeira.cs</DependentUpon>
@@ -220,9 +222,15 @@
     <Content Include="Views\Utilizadores\Edit.cshtml" />
     <Content Include="Views\Utilizadores\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Consultas\Index.cshtml" />
+    <Content Include="Views\Consultas\PesquisaCliente.cshtml" />
+    <Content Include="Views\Consultas\PesquisaDinamica.cshtml" />
+    <Content Include="Views\Consultas\MelhorCliente.cshtml" />
+    <Content Include="Views\Consultas\EstadiasDeUmCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Public\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

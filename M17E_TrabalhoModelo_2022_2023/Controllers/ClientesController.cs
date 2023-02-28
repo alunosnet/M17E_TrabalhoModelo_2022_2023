@@ -54,6 +54,15 @@ namespace M17E_TrabalhoModelo_2022_2023.Controllers
             {
                 db.Clientes.Add(cliente);
                 db.SaveChanges();
+
+                //guardar a fotografia
+                HttpPostedFileBase fotografia = Request.Files["fotografia"];
+                if(fotografia!=null && fotografia.ContentLength>0)
+                {
+                    string nome = Server.MapPath("~/Public/") + cliente.ClienteID + ".jpg";
+                    fotografia.SaveAs(nome);
+                }
+
                 return RedirectToAction("Index");
             }
 

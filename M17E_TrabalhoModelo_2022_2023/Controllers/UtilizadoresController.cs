@@ -14,7 +14,7 @@ using M17E_TrabalhoModelo_2022_2023.Models;
 
 namespace M17E_TrabalhoModelo_2022_2023.Controllers
 {
-    [Authorize]
+    
     public class UtilizadoresController : Controller
     {
         private M17E_TrabalhoModelo_2022_2023Context db = new M17E_TrabalhoModelo_2022_2023Context();
@@ -40,7 +40,8 @@ namespace M17E_TrabalhoModelo_2022_2023.Controllers
             }
             return View(utilizador);
         }
-        [Authorize(Roles = "Administrador")]
+      
+
         // GET: Utilizadores/Create
         public ActionResult Create()
         {
@@ -52,7 +53,7 @@ namespace M17E_TrabalhoModelo_2022_2023.Controllers
             };
             return View(utilizador);
         }
-        [Authorize(Roles = "Administrador")]
+        
         // POST: Utilizadores/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -104,16 +105,24 @@ namespace M17E_TrabalhoModelo_2022_2023.Controllers
             {
                 return HttpNotFound();
             }
-            //TODO: continuar aqui
             //se não é admin só pode editar a sua própria conta
             if (User.IsInRole("Administrador"))
             {
 
                 utilizador.Perfis = new[]
                 {
-                new SelectListItem{Value="0", Text="Administrador"},
-                new SelectListItem{Value="1", Text="Funcionário"}
-            };
+                    new SelectListItem{Value="0", Text="Administrador"},
+                    new SelectListItem{Value="1", Text="Funcionário"}
+                };
+            }
+            else
+            {
+                var temp = db.Utilizadors.Where(u => u.Nome == User.Identity.Name).FirstOrDefault();
+                utilizador = temp;
+                utilizador.Perfis = new[]
+                {
+                    new SelectListItem{Value="1", Text="Funcionário"}
+                };
             }
             return View(utilizador);
         }
@@ -145,7 +154,17 @@ namespace M17E_TrabalhoModelo_2022_2023.Controllers
 
                 db.Entry(utilizador).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                if (User.IsInRole("Administrador"))
+                    return RedirectToAction("Index");
+                else
+                    return RedirectToAction("Index", "Estadias");
+            }
+            if (User.IsInRole("Administrador") == false)
+            {
+                utilizador.Perfis = new[]
+                {
+                    new SelectListItem{Value="1", Text="Funcionário"}
+                };
             }
             return View(utilizador);
         }
