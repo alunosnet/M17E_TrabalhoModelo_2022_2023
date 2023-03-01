@@ -33,7 +33,7 @@ namespace M17E_TrabalhoModelo_2022_2023.Controllers
                 foreach(var u in db.Utilizadors.ToList())
                 {
                     if(u.Nome.ToLower()==utilizador.Nome.ToLower() &&
-                        u.Password==utilizador.Password)
+                        u.Password==utilizador.Password && u.Estado==true)
                     {
                         //iniciar sessão
                         FormsAuthentication.SetAuthCookie(utilizador.Nome, false);
