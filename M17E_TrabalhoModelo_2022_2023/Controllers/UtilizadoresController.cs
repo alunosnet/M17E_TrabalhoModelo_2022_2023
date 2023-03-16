@@ -9,6 +9,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using M17E_TrabalhoModelo_2022_2023.Data;
 using M17E_TrabalhoModelo_2022_2023.Models;
 
@@ -154,6 +155,8 @@ namespace M17E_TrabalhoModelo_2022_2023.Controllers
 
                 db.Entry(utilizador).State = EntityState.Modified;
                 db.SaveChanges();
+                //atualizar o cookie de sessão
+                FormsAuthentication.SetAuthCookie(utilizador.Nome, false);
                 if (User.IsInRole("Administrador"))
                     return RedirectToAction("Index");
                 else
